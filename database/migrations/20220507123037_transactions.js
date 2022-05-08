@@ -1,14 +1,14 @@
 exports.up = function (knex) {
     return knex.schema.createTable('transactions', table => {
         table.increments('id')
-        table.string('reciever_id')
-        table.string('sender_name')
-        table.string('reciever_name')
-        table.uuid('sender_id')
-        table.uuid('transaction_id')
+        table.string('recieverNumber')
+        table.string('senderName')
+        table.string('recieverName')
+        table.string('senderNumber')
+        table.uuid('transactionId').unique()
         table.integer('amount')
-        table.boolean('is_successful')
-        table.timestamp('transaction_time').defaultTo(knex.fn.now())
+        table.boolean('isSuccessful')
+        table.timestamp('transactionTime').defaultTo(knex.fn.now())
     })
 };
 

@@ -1,9 +1,10 @@
 exports.up = function (knex) {
-    return knex.schema.createTable('user_accounts', table => {
+    return knex.schema.createTable('wallet', table => {
         table.increments('id')
-        table.string('user_id')
-        table.float('account_balance')
-        table.uuid('account_id')
+        table.string('userEmail')
+        table.string('userNumber')
+        table.float('accountBalance')
+        table.uuid('accountId')
     })
 };
 
