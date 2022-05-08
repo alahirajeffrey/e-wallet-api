@@ -11,6 +11,7 @@ router.post("/register", async (req, res) => {
     if (!req.body.lastName) return res.status(400).json({ message: "Last name required..." })
     if (!req.body.email) return res.status(400).json({ message: "Email required..." })
     if (!req.body.password) return res.status(400).json({ message: "Password required..." })
+    if (!req.body.mobileNumber) return res.status(400).json({ message: "Mobile number required..." })
 
     try {
         //check if user already exists
@@ -25,7 +26,8 @@ router.post("/register", async (req, res) => {
             first_name: req.body.firstName,
             last_name: req.body.lastName,
             email: req.body.email.toLowerCase(),
-            password: hashedPassword
+            password: hashedPassword,
+            mobileNumber: req.body.mobileNumber
         }
 
         const newUser = await usersDB.addUser(user)
