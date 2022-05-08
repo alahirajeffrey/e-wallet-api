@@ -23,8 +23,8 @@ router.post("/register", async (req, res) => {
 
         // save new user to database
         const user = {
-            first_name: req.body.firstName,
-            last_name: req.body.lastName,
+            firstName: req.body.firstName,
+            lastname: req.body.lastName,
             email: req.body.email.toLowerCase(),
             password: hashedPassword,
             mobileNumber: req.body.mobileNumber
@@ -34,7 +34,7 @@ router.post("/register", async (req, res) => {
         return res.status(201).json({ message: "New user registered..." })
 
     } catch (err) {
-        return res.status(501).json(err.message)
+        return res.status(501).json({ message: err.message })
     }
 })
 
