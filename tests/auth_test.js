@@ -15,9 +15,9 @@ describe('/POST user', () => {
     it('should return a 400 error when email is absent ', (done) => {
 
         const user = {
-            first_name: "Jeffrey",
-            last_name: "Alahira",
-            password: '123456'
+            firstName: "Jeffrey",
+            lastName: "Alahira",
+            password: '123456',
         }
 
         chai.request(server)
@@ -34,10 +34,11 @@ describe('/POST user', () => {
     it('Should register a new user', (done) => {
 
         const user = {
-            first_name: "Jeffrey",
-            last_name: "Alahira",
-            email: 'estheralahira@gmail.com',
-            password: '123456'
+            firstName: "Jeffrey",
+            lastName: "Alahira",
+            email: 'alahirajeffrey@gmail.com',
+            password: '123456',
+            mobileNumber: "0701234"
         }
 
         chai.request(server)
@@ -54,10 +55,11 @@ describe('/POST user', () => {
     it('should return a 409 error if user already exists', (done) => {
 
         const user = {
-            first_name: "Jeffrey",
-            last_name: "Alahira",
+            firstName: "Jeffrey",
+            lastName: "Alahira",
             email: 'alahirajeffrey@gmail.com',
-            password: '123456'
+            password: '123456',
+            mobileNumber: "0701234"
         }
 
         chai.request(server)
@@ -93,7 +95,7 @@ describe('/GET user', () => {
     it('Should login user', (done) => {
 
         const user = {
-            email: 'estheralahira@gmail.com',
+            email: 'alahirajeffrey@gmail.com',
             password: '123456'
         }
 
@@ -144,5 +146,3 @@ describe('/GET user', () => {
             })
     })
 })
-
-
