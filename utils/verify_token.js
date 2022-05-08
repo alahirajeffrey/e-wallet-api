@@ -10,24 +10,11 @@ const verifyToken = (req, res, next) => {
 
     // retrieve token if auth header is present
     const token = authHeader.split(" ")[1]
-    jwt.verify(token, process.env.JWT_TOKEN_KEY, (err, result) => {
+    jwt.verify(token, process.env.JWT_TOKEN_KEY, (err, user) => {
         if (err) return res.status(403).json("Invalid token")
         req.user = user
         next()
     })
 }
 
-//function to verify token and authorize users
-const tokenVerificationAndAuthorization = (req, res, next) => {
-
-    // verify token
-    verifyToken(req, res, () => {
-        if (req.user.mobileNumber === req.params.mobileNumber) {
-            next()
-        } else {
-            return res.status(403).json("You are not allowed to do that")
-        }
-    })
-}
-
-module.exports = { verifyToken, tokenVerificationAndAuthorization } 
+module.exports = { verifyToken } 
