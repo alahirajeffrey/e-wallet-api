@@ -16,16 +16,16 @@ const addUser = user => {
 };
 
 // update user
-const updateUser = (id, post) => {
+const updateUser = (mobileNumber, post) => {
     return db("users")
-        .where("id", id)
+        .where("mobileNumber", mobileNumber)
         .update(post)
 };
 
 // remove user
 const removeUser = id => {
     return db("users")
-        .where("id", id)
+        .where("mobileNumber", mobileNumber)
         .del()
 };
 
