@@ -1,6 +1,7 @@
 const jwt = require('jsonwebtoken')
 const usersDB = require("../models/user_model")
 
+//function to verify jwt tokens
 const verifyToken = (req, res, next) => {
 
     const authHeader = req.headers.token
@@ -16,4 +17,17 @@ const verifyToken = (req, res, next) => {
     })
 }
 
-module.exports = verifyToken 
+//function to verify token and authorize users
+const tokenVerificationAndAuthorization = (req, res, next) => {
+
+    // verify token
+    verifyToken(req, res, () => {
+        if (req.user.mobileNumber === req.params.mobileNumber) {
+            next()
+        } else {
+            return res.status(403).json("You are not allowed to do that")
+        }
+    })
+}
+
+module.exports = { verifyToken, tokenVerificationAndAuthorization } 
