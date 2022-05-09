@@ -2,8 +2,8 @@ exports.up = function (knex) {
     return knex.schema.createTable('transactions', table => {
         table.increments('id')
         table.string('recieverNumber')
-        table.string('senderName')
-        table.string('recieverName')
+        table.string('senderEmail')
+        table.string('recieverEmail')
         table.string('senderNumber')
         table.uuid('transactionId').unique()
         table.integer('amount')
