@@ -2,6 +2,8 @@ const router = require("express").Router()
 const usersDB = require("../models/user_model")
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
+const walletDB = require("../models/wallet_model")
+const { v4: uuidv4 } = require('uuid')
 
 // register new user
 router.post("/register", async (req, res) => {
@@ -21,7 +23,7 @@ router.post("/register", async (req, res) => {
         //hash password
         const hashedPassword = await bcrypt.hash(req.body.password, 12)
 
-        // save new user to database
+        // save wallet details
         const user = {
             firstName: req.body.firstName,
             lastname: req.body.lastName,
@@ -30,8 +32,24 @@ router.post("/register", async (req, res) => {
             mobileNumber: req.body.mobileNumber
         }
 
+        //save wallet to database
         const newUser = await usersDB.addUser(user)
-        return res.status(201).json({ message: "New user registered..." })
+
+        //create wallet if new user is created
+        if (newUser) {
+            const wallet = {
+                userEmail: req.body.email.toLowerCase(),
+                userNumber: req.body.mobileNumber,
+                accountBalance: 0,
+                accountId: uuidv4()
+            }
+
+            // save wallet details to database
+            const newWallet = await walletDB.addWallet(wallet)
+
+            if (newWallet) return res.status(201).json({ message: "New user registered and wallet created" })
+        }
+
 
     } catch (err) {
         return res.status(501).json({ message: err.message })
