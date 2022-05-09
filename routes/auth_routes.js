@@ -79,8 +79,7 @@ router.get("/login", async (req, res) => {
                 process.env.JWT_TOKEN_KEY,
                 { expiresIn: '1h' })
 
-            console.log(token)
-            return res.status(200).json({ message: "Login successful" })
+            return res.status(200).json({ message: "Login successful", token: token })
         }
 
         return res.status(500).json({ message: "User does not exist..." })
