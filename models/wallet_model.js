@@ -10,11 +10,6 @@ const findWalletByEmail = email => {
     return db('wallets').where("userEmail", email)
 }
 
-// // get balance of specific wallet
-// const getWalletBalanceByEmail = email => {
-//     return db("wallet").where("userEmail", email)
-// };
-
 // remove wallet
 const removeWallet = email => {
     return db("wallet")
