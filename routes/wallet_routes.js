@@ -2,6 +2,7 @@ const router = require("express").Router()
 const walletDB = require("../models/wallet_model")
 const { verifyToken } = require('../utils/verify_token')
 const transactionDB = require("../models/transactions_model")
+const { v4: uuidv4 } = require('uuid')
 
 router.post("/fundWallet", verifyToken, async (req, res) => {
 
@@ -23,6 +24,21 @@ router.post("/fundWallet", verifyToken, async (req, res) => {
 
             //save new balance to user wallet
             const updatedWallet = await walletDB.updateWalletBalance(newBalance, req.body.email)
+
+            //save transaction 
+            const transaction = {
+                senderEmail: req.body.email,
+                senderNumber: wallet[0].userNumber,
+                transactionId: uuidv4(),
+                amount: amountToFund,
+                isSuccessful: true,
+                transactionType: "Fund wallet"
+            }
+
+            //save transactions to database
+            await transactionDB.addTransaction(transaction)
+
+            // save if wallet is updated
             if (updatedWallet) {
                 return res.status(200).json({
                     message: "Success..",
@@ -73,6 +89,23 @@ router.post("/transferFund", verifyToken, async (req, res) => {
             //update reciever account
             await walletDB.updateWalletBalance(recieverBalanceAfterTransfer, req.body.recieverEmail)
 
+
+            //save transaction 
+            const transaction = {
+                senderEmail: req.body.senderEmail,
+                recieverEmail: req.body.recieverEmail,
+                senderNumber: senderWallet[0].userNumber,
+                recieverNumber: recieverWallet[0].userNumber,
+                transactionId: uuidv4(),
+                amount: amountToTransfer,
+                isSuccessful: true,
+                transactionType: "Transfer"
+            }
+
+            //save transactions to database
+            await transactionDB.addTransaction(transaction)
+
+
             return res.status(200).json({
                 message: "Transfer successful...",
                 Balance: `${senderBalanceAfterTransfer}`
@@ -104,6 +137,20 @@ router.get("/withdrawFund", verifyToken, async (req, res) => {
 
                 //update wallet balance
                 const walletAfterWithdrawal = await walletDB.updateWalletBalance(balanceAfterWithdrawal, req.body.email)
+
+                //save transaction 
+                const transaction = {
+                    senderEmail: req.body.email,
+                    senderNumber: wallet[0].userNumber,
+                    transactionId: uuidv4(),
+                    amount: amountToWithdraw,
+                    isSuccessful: true,
+                    transactionType: "Withdrawal"
+                }
+
+                //save transactions to database
+                await transactionDB.addTransaction(transaction)
+
                 if (walletAfterWithdrawal) {
                     return res.status(200).json({
                         message: `${amountToWithdraw} withdrawn`,
@@ -114,10 +161,9 @@ router.get("/withdrawFund", verifyToken, async (req, res) => {
 
             return res.status(400).json({ message: "Insufficient balance..." })
         }
-        // withdraw amount
 
     } catch (err) {
-        return res.status(500).json({ message: "Sender Wallet not found..." })
+        return res.status(500).json({ message: err.message })
     }
 
 })
