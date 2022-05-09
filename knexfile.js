@@ -13,7 +13,7 @@ module.exports = {
       database: process.env.MYSQL_DEV_DATABASE
     },
     migrations: {
-      directory: "./database/migrations"
+      directory: "./database"
     },
     seeds: {
       directory: "./database/seeds"
