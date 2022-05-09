@@ -5,4 +5,4 @@ const addTransaction = transaction => {
     return db("transactions").insert(transaction, "id")
 };
 
-module.exports = addTransaction
+module.exports = { addTransaction }
