@@ -8,6 +8,7 @@ exports.up = function (knex) {
         table.uuid('transactionId').unique()
         table.integer('amount')
         table.boolean('isSuccessful')
+        table.string('transactionType')
         table.timestamp('transactionTime').defaultTo(knex.fn.now())
     })
 };
