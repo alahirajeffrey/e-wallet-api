@@ -23,7 +23,7 @@ const updateUser = (mobileNumber, post) => {
 };
 
 // remove user
-const removeUser = id => {
+const removeUser = mobileNumber => {
     return db("users")
         .where("mobileNumber", mobileNumber)
         .del()
