@@ -5,7 +5,7 @@ const { verifyToken } = require('../utils/verify_token')
 router.put("/:mobileNumber", verifyToken, async (req, res) => {
 
     //validate request
-    if (!req.params.mobileNumber) return res.status(400).json({ message: "Mobile number required..." })
+    if (!req.params.mobileNumber) return res.status(404).json({ message: "Mobile number required..." })
     if (!req.body) res.status(400).json({ message: "Cannot make changes. You have no are missing information..." })
 
     const mobileNumber = req.params.mobileNumber
@@ -33,7 +33,7 @@ router.put("/:mobileNumber", verifyToken, async (req, res) => {
 router.delete("/:mobileNumber", verifyToken, async (req, res) => {
 
     //validate request
-    if (!req.params.mobileNumber) return res.status(400).json({ message: "Mobile number required..." })
+    if (!req.params.mobileNumber) return res.status(404).json({ message: "Mobile number required..." })
 
     try {
         //check if user exists
@@ -41,8 +41,12 @@ router.delete("/:mobileNumber", verifyToken, async (req, res) => {
         if (registeredUser.length != 0) {
             // check if phone number on registered user is same as params
             if (registeredUser[0].mobileNumber == req.params.mobileNumber) {
-                await usersDB.removeUser(req.params.mobileNumber)
-                return res.status(204).json({ message: "User deleted..." })
+
+                // delete user 
+                const removedUser = await usersDB.removeUser(req.params.mobileNumber)
+                if (removedUser) return res.status(204).json({ message: "User deleted..." })
+
+                return res.status(500).json({ message: "User not deleted..." })
             }
         }
 
