@@ -44,7 +44,8 @@ router.delete("/:mobileNumber", verifyToken, async (req, res) => {
 
                 // delete user 
                 const removedUser = await usersDB.removeUser(req.params.mobileNumber)
-                if (removedUser) return res.status(204).json({ message: "User deleted..." })
+
+                if (removedUser) return res.status(204).send({ message: "User deleted..." })
 
                 return res.status(500).json({ message: "User not deleted..." })
             }
