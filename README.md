@@ -51,6 +51,9 @@ in recent years, there has been a vast increase in the development and use of fi
 ## Database Design
 ![alt text](assets/e-wallet-api-database-design.png)
 
+#### User Workflow
+![alt text](assets/user-workflow.png)
+
 #### How to use
 - clone this repository using `git clone https://github.com/alahirajeffrey/e-wallet-api.git`.
 - Navigate to project folder and install dependencies using `npm install`.
