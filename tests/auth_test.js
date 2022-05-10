@@ -1,6 +1,5 @@
 const chai = require("chai")
 const chaiHttp = require("chai-http")
-const user = require("../models/user_model")
 const server = require("../server")
 
 const should = chai.should()
@@ -31,7 +30,7 @@ describe('/POST user', () => {
             })
     })
 
-    it('Should register a new user', (done) => {
+    it('Should register a new user and create a wallet', (done) => {
 
         const user = {
             firstName: "Jeffrey",
@@ -47,7 +46,7 @@ describe('/POST user', () => {
             .end((err, res) => {
                 res.should.have.status(201)
                 res.body.should.be.a('object')
-                res.body.should.have.property('message')
+                res.body.should.have.property('message').eq("New user registered and wallet created")
                 done()
             })
     })
