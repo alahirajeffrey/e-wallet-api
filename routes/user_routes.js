@@ -52,7 +52,6 @@ router.delete("/:mobileNumber", verifyToken, async (req, res) => {
 
                     // check if wallet with email exists
                     const wallet = await walletDB.findWalletByEmail(req.body.email)
-                    console.log(wallet)
                     if (wallet.length != 0 && wallet[0].userEmail == req.body.email) {
 
                         await walletDB.removeWallet(req.body.email)
