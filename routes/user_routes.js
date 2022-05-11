@@ -5,8 +5,7 @@ const { verifyToken } = require('../utils/verify_token')
 router.put("/:mobileNumber", verifyToken, async (req, res) => {
 
     //validate request
-    if (!req.params.mobileNumber) return res.status(404).json({ message: "Mobile number required..." })
-    if (!req.body) res.status(400).json({ message: "Cannot make changes. You have no are missing information..." })
+    if (!req.body) return res.status(400).json({ message: "Cannot make changes. You have no are missing information..." })
 
     const mobileNumber = req.params.mobileNumber
     const newChanges = req.body
@@ -31,9 +30,6 @@ router.put("/:mobileNumber", verifyToken, async (req, res) => {
 })
 
 router.delete("/:mobileNumber", verifyToken, async (req, res) => {
-
-    //validate request
-    if (!req.params.mobileNumber) return res.status(404).json({ message: "Mobile number required..." })
 
     try {
         //check if user exists
