@@ -51,7 +51,7 @@
 //             })
 //     })
 
-//     it('should return a 409 error if user already exists', (done) => {
+//     it('should return a 409 error if user with similar email already exists', (done) => {
 
 //         const user = {
 //             firstName: "Jeffrey",
