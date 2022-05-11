@@ -5,9 +5,14 @@ const find = () => {
     return db("users")
 };
 
-// get specific user
+// get specific user by mail
 const findByEmail = email => {
     return db("users").where("email", email)
+};
+
+// get specific user by mobile number
+const findByMobileNumber = mobileNumber => {
+    return db("users").where("mobileNumber", mobileNumber)
 };
 
 // add a user
@@ -34,5 +39,6 @@ module.exports = {
     findByEmail,
     addUser,
     updateUser,
-    removeUser
+    removeUser,
+    findByMobileNumber
 }
