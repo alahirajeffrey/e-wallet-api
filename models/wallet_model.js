@@ -12,7 +12,7 @@ const findWalletByEmail = email => {
 
 // remove wallet
 const removeWallet = email => {
-    return db("wallet")
+    return db("wallets")
         .where("userEmail", email)
         .del()
 };
