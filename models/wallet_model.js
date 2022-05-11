@@ -11,11 +11,12 @@ const findWalletByEmail = email => {
 }
 
 // remove wallet
-const removeWallet = email => {
+const removeWallet = mobileNumber => {
     return db("wallets")
-        .where("userEmail", email)
+        .where("userMobile", mobileNumber)
         .del()
 };
+
 
 // update wallet balance
 const updateWalletBalance = (amountToFund, userEmail) => {
