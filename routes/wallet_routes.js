@@ -157,10 +157,12 @@ router.get("/withdrawFund", verifyToken, async (req, res) => {
                         balance: `New balance ${balanceAfterWithdrawal}`
                     })
                 }
+                return res.status(400).json({ message: "Insufficient balance..." })
             }
 
-            return res.status(400).json({ message: "Insufficient balance..." })
+            return res.status(500).json({ message: "Wallet not found..." })
         }
+
 
     } catch (err) {
         return res.status(500).json({ message: err.message })
