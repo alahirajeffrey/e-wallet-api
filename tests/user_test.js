@@ -11,11 +11,11 @@
 //     it('Should register a new user and create a wallet', (done) => {
 
 //         const user = {
-//             firstName: "Daniel",
-//             lastName: "Alahira",
+//             firstName: "daniel",
+//             lastName: "alahira",
 //             email: 'danielalahira@gmail.com',
 //             password: '123456',
-//             mobileNumber: "07012345"
+//             mobileNumber: "070123456"
 //         }
 
 //         chai.request(server)
@@ -54,32 +54,13 @@
 
 //                 describe("User routes test", () => {
 
-//                     it('should return a 404 error if mobileNumber parameter is not given', (done) => {
+//                     it('should return a 200 code when user is updated', (done) => {
+
+//                         const mobileNumber = "070123456"
 
 //                         const user = {
-//                             firstName: "Daniel",
-//                             lastName: "Alahira",
-//                             email: "danielalahira@gmail.com"
-//                         }
-
-//                         chai.request(server)
-//                             .put('/api/v1/user/')
-//                             .send(user)
-//                             .set('token', 'Bearer ' + token)
-//                             .end((err, response) => {
-//                                 response.should.have.status(404)
-//                                 response.should.be.a('object')
-//                                 done()
-//                             })
-//                     })
-
-//                     it('should return a 200 error when user is updated', (done) => {
-
-//                         const mobileNumber = "07012345"
-
-//                         const user = {
-//                             firstName: "Daniel",
-//                             lastName: "Jeffrey",
+//                             firstName: "alahira",
+//                             lastName: "daniel",
 //                             email: "danielalahira@gmail.com"
 //                         }
 
@@ -95,24 +76,18 @@
 //                             })
 //                     })
 
-//                     it('should return a 500 error when user with email does not exist', (done) => {
+//                     it('should return a 400 error when request is not given', (done) => {
 
-//                         const mobileNumber = "0701234"
-
-//                         const user = {
-//                             firstName: "Daniel",
-//                             lastName: "Alahira",
-//                             email: "jeffreyalahira@gmail.com"
-//                         }
+//                         const mobileNumber = "070123456"
 
 //                         chai.request(server)
 //                             .put('/api/v1/user/' + mobileNumber)
-//                             .send(user)
+//                             .send()
 //                             .set('token', 'Bearer ' + token)
 //                             .end((err, response) => {
-//                                 response.should.have.status(500)
+//                                 response.should.have.status(400)
 //                                 response.should.be.a('object')
-//                                 response.body.should.have.property('message').eq("User does not exist...")
+//                                 response.body.should.have.property('message').eq("Error updating. Include firstName, lastName or email...")
 //                                 done()
 //                             })
 //                     })
@@ -120,17 +95,22 @@
 
 //                 /**
 //                 * Test DELETE route
+//                 *
 //                 */
 
-//                 describe('DELETE user routes', () => {
-//                     it('should return a 404 error if mobileNumber parameter is not given', (done) => {
+//                 describe('DELETE user', () => {
+//                     it('should return a 400 error if email is not given', (done) => {
+
+//                         const mobileNumber = "070123456"
+
+//                         const user = {}
 
 //                         chai.request(server)
-//                             .delete('/api/v1/user/')
+//                             .delete('/api/v1/user/' + mobileNumber)
 //                             .send(user)
 //                             .set('token', 'Bearer ' + token)
 //                             .end((err, response) => {
-//                                 response.should.have.status(404)
+//                                 response.should.have.status(400)
 //                                 response.should.be.a('object')
 //                                 done()
 //                             })
@@ -138,9 +118,13 @@
 //                 })
 
 //                 describe('DELETE user', () => {
-//                     it('should delete user', (done) => {
+//                     it('should return 200 error if user is deleted', (done) => {
 
-//                         const mobileNumber = "07012345"
+//                         const mobileNumber = "070123456"
+
+//                         const user = {
+//                             email: "danielalahira@gmail.com"
+//                         }
 
 //                         chai.request(server)
 //                             .delete('/api/v1/user/' + mobileNumber)
@@ -153,6 +137,7 @@
 //                             })
 //                     })
 //                 })
+
 
 //             })
 //     })
