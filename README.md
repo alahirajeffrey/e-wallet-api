@@ -1,5 +1,5 @@
 ## Problem Description
-Even though strides are being made in the financial sector in nigeria. The problem of financial inclusion still remains i.e Not everybody has equal access to financial services which leaves room for a large percentage of people vulnerable to fraudlent activities. 
+Even though strides are being made in the financial sector in nigeria. The problem of financial inclusion still remains i.e Not everybody has equal access to financial services which leave a large percentage of people vulnerable to fraudlent activities. 
 
 ## Overview and Project Summary
 in recent years, there has been a vast increase in the development and use of fintech and fintech related products. The aim of this project is to provide a sustainable solution that helps users overcome the shortcoming of traditional banking.
@@ -35,6 +35,7 @@ in recent years, there has been a vast increase in the development and use of fi
 - Fund account
 - Transfer funds
 - Recieve funds
+- Check account balance
 
 ## API Endpoints
 | HTTP Verbs | Endpoints | Action | Required |
@@ -51,12 +52,20 @@ in recent years, there has been a vast increase in the development and use of fi
 ## Database Design
 ![alt text](assets/e-wallet-api-database-design.png)
 
-#### User Workflow
+## User Workflow
 ![alt text](assets/user-workflow.png)
 
-#### How to use
-- clone this repository using `git clone https://github.com/alahirajeffrey/e-wallet-api.git`.
+- First step involves a user creating creating an account after which a wallet is automatically created for the user
+- Upon creation, the user logs into his account
+- The user can then fund his account with the desired amount
+- The user can then transfer funds to other accounts, withdraw funds or check account balance.
+
+**NB : Endeavour to check the API endpoints section to know the required fields for each of the activity**    
+
+## How to use
+- Open your terminal and clone this repository using `git clone https://github.com/alahirajeffrey/e-wallet-api.git`.
 - Navigate to project folder and install dependencies using `npm install`.
+- Run the comman `npx knex migrate:latest` to create the tables. 
 - Create .env file and add environment variables using .env.sample as a guide.
 - Open terminal and type `npm run test` to run tests.
 - Type `npm run dev` to run server in development mode.
