@@ -1,6 +1,7 @@
 const express = require("express")
 const server = express()
 const rateLimit = require("express-rate-limit")
+const helmet = require("helmet")
 
 // setup rate limiter
 const limiter = rateLimit({
@@ -18,6 +19,7 @@ server.use(express.json())
 server.use("/api/v1/auth", authRoutes)
 server.use("/api/v1/user", userRoutes)
 server.use("/api/v1/wallet", walletRoutes)
+server.use(helmet())
 
 // apply rate limiter
 server.use(limiter)
