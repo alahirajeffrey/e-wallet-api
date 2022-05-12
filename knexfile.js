@@ -31,7 +31,7 @@ module.exports = {
       ssl: { rejectUnauthorized: false },
     },
     migrations: {
-      directory: __dirname + "/db/migrations"
+      directory: __dirname + "/database"
     },
     seeds: {
       directory: __dirname + "/db/seeds"
