@@ -10,13 +10,11 @@ const findWalletByEmail = email => {
     return db('wallets').where("userEmail", email)
 }
 
-// remove wallet
-const removeWallet = mobileNumber => {
+// get specific wallet by mobile number
+const findByMobileNumber = mobileNumber => {
     return db("wallets")
-        .where("userMobile", mobileNumber)
-        .del()
+        .where("userNumber", mobileNumber)
 };
-
 
 // update wallet balance
 const updateWalletBalance = (amountToFund, userEmail) => {
@@ -25,11 +23,17 @@ const updateWalletBalance = (amountToFund, userEmail) => {
         .update("accountBalance", amountToFund)
 }
 
+// remove wallet
+const removeWallet = mobileNumber => {
+    return db("wallets")
+        .where("userNumber", mobileNumber)
+        .del()
+};
 
 module.exports = {
     addWallet,
     removeWallet,
     updateWalletBalance,
     findWalletByEmail,
-
+    findByMobileNumber
 }
