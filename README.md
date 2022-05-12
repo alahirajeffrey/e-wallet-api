@@ -42,7 +42,7 @@ in recent years, there has been a vast increase in the development and use of fi
 | --- | --- | --- | --- |
 | POST | /api/v1/auth/register | Register a new user | req.body.firstName <br> req.body.password <br> req.body.email <br> req.body.lastName <br> req.body.mobileNumber |
 | GET | /api/v1/auth/login | Login user |  req.body.email <br> req.body.password|
-| DELETE | /api/v1/user/delete/:mobileNumber | Delete a user |  req.params.mobileNumber|
+| DELETE | /api/v1/user/delete/:mobileNumber | Delete a user |  req.params.mobileNumber <br> req.body.email|
 | PUT | /api/v1/user/update/:mobileNumber | Update a user |  req.params.mobileNumber <br> req.body|
 | POST | /api/v1/wallet/fundWallet | Fund wallet  | req.body.email <br> req.body.amountToFund |
 | POST | /api/v1/wallet/transferFund | Transfer funds  | req.body.senderEmail <br> req.body.amountToTransfer <br> req.body.recieverEmail |
