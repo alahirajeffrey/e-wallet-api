@@ -7,7 +7,6 @@ module.exports = {
     client: 'mysql',
     connection: {
       host: process.env.MYSQL_DEV_HOST,
-      port: process.env.MYSQL_DEV_PORT,
       user: process.env.MYSQL_DEV_USER,
       password: process.env.MYSQL_DEV_PASSWORD,
       database: process.env.MYSQL_DEV_DATABASE
@@ -23,11 +22,10 @@ module.exports = {
   production: {
     client: 'mysql',
     connection: {
-      host: process.env.MYSQL_DEV_HOST,
-      port: process.env.MYSQL_DEV_PORT,
-      user: process.env.MYSQL_DEV_USER,
-      password: process.env.MYSQL_DEV_PASSWORD,
-      database: process.env.MYSQL_DEV_DATABASE,
+      host: process.env.DB_HOST,
+      user: process.env.DB_USER,
+      password: process.env.DB_PASSWORD,
+      database: process.env.DB_DATABASE,
       ssl: { rejectUnauthorized: false },
     },
     migrations: {
