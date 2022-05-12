@@ -80,6 +80,3 @@ This project is available for use under the MIT License.
 
 ### Link to Deployed app
 https://nodejs-e-wallet-api.herokuapp.com/
-
-#### Reviewer
-Lendsqr
