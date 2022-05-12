@@ -37,21 +37,6 @@ in recent years, there has been a vast increase in the development and use of fi
 - Recieve funds
 - Check account balance
 
-## API Endpoints
-| HTTP Verbs | Endpoints | Action | Required |
-| --- | --- | --- | --- |
-| POST | /api/v1/auth/register | Register a new user | req.body.firstName <br> req.body.password <br> req.body.email <br> req.body.lastName <br> req.body.mobileNumber |
-| GET | /api/v1/auth/login | Login user |  req.body.email <br> req.body.password|
-| DELETE | /api/v1/user/delete/:mobileNumber | Delete a user |  req.params.mobileNumber <br> req.body.email|
-| PUT | /api/v1/user/update/:mobileNumber | Update a user |  req.params.mobileNumber <br> req.body|
-| POST | /api/v1/wallet/fundWallet | Fund wallet  | req.body.email <br> req.body.amountToFund |
-| POST | /api/v1/wallet/transferFund | Transfer funds  | req.body.senderEmail <br> req.body.amountToTransfer <br> req.body.recieverEmail |
-| GET | /api/v1/wallet/withdrawFund | Withdraw funds  | req.body.email <br> req.body.amountToWithdraw |
-| GET | /api/v1/wallet/walletBalance | Check wallet balance  | req.body.email |
-
-## Database Design
-![alt text](assets/e-wallet-api-database-design.png)
-
 ## User Workflow
 ![alt text](assets/user-workflow.png)
 
@@ -62,15 +47,30 @@ in recent years, there has been a vast increase in the development and use of fi
 
 **NB : Endeavour to check the API endpoints section to know the required fields for each of the activity**    
 
-## How to use
+## How to setup locally
 - Open your terminal and clone this repository using `git clone https://github.com/alahirajeffrey/e-wallet-api.git`.
 - Navigate to project folder and install dependencies using `npm install`.
-- Run the comman `npx knex migrate:latest` to create the tables. 
 - Create .env file and add environment variables using .env.sample as a guide.
+- Run the command `npx knex migrate:latest` to create the tables. 
 - Open terminal and type `npm run test` to run tests.
 - Type `npm run dev` to run server in development mode.
 - Type `npm run start` to start server in production mode. 
 - Use postman and navigate to desired endpoints 
+
+## API Endpoints
+| HTTP Verbs | Endpoints | Action | Required |
+| --- | --- | --- | --- |
+| POST | https://nodejs-e-wallet-api.herokuapp.com//api/v1/auth/register | Register a new user | req.body.firstName <br> req.body.password <br> req.body.email <br> req.body.lastName <br> req.body.mobileNumber |
+| GET | https://nodejs-e-wallet-api.herokuapp.com//api/v1/auth/login | Login user |  req.body.email <br> req.body.password|
+| DELETE | https://nodejs-e-wallet-api.herokuapp.com//api/v1/user/delete/:mobileNumber | Delete a user |  req.params.mobileNumber <br> req.body.email|
+| PUT | https://nodejs-e-wallet-api.herokuapp.com//api/v1/user/update/:mobileNumber | Update a user |  req.params.mobileNumber <br> req.body|
+| POST | https://nodejs-e-wallet-api.herokuapp.com//api/v1/wallet/fundWallet | Fund wallet  | req.body.email <br> req.body.amountToFund |
+| POST | https://nodejs-e-wallet-api.herokuapp.com//api/v1/wallet/transferFund | Transfer funds  | req.body.senderEmail <br> req.body.amountToTransfer <br> req.body.recieverEmail |
+| GET | https://nodejs-e-wallet-api.herokuapp.com//api/v1/wallet/withdrawFund | Withdraw funds  | req.body.email <br> req.body.amountToWithdraw |
+| GET | https://nodejs-e-wallet-api.herokuapp.com//api/v1/wallet/walletBalance | Check wallet balance  | req.body.email |
+
+## Database Design
+![alt text](assets/e-wallet-api-database-design.png)
 
 #### Lincense
 This project is available for use under the MIT License.
