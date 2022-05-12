@@ -19,4 +19,22 @@ module.exports = {
       directory: "./database/seeds"
     }
   },
+
+  production: {
+    client: 'mysql',
+    connection: {
+      host: process.env.MYSQL_DEV_HOST,
+      port: process.env.MYSQL_DEV_PORT,
+      user: process.env.MYSQL_DEV_USER,
+      password: process.env.MYSQL_DEV_PASSWORD,
+      database: process.env.MYSQL_DEV_DATABASE,
+      ssl: { rejectUnauthorized: false },
+    },
+    migrations: {
+      directory: __dirname + "/db/migrations"
+    },
+    seeds: {
+      directory: __dirname + "/db/seeds"
+    }
+  },
 };
