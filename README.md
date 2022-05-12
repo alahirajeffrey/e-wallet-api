@@ -38,12 +38,12 @@ in recent years, there has been a vast increase in the development and use of fi
 - Check account balance
 
 ## User Workflow
-![alt text](assets/user-workflow.png)
-
 - First step involves a user creating creating an account after which a wallet is automatically created for the user
 - Upon creation, the user logs into his account
 - The user can then fund his account with the desired amount
 - The user can then transfer funds to other accounts, withdraw funds or check account balance.
+
+![alt text](assets/user-workflow.png)
 
 **NB : Endeavour to check the API endpoints section to know the required fields for each of the activity**    
 
