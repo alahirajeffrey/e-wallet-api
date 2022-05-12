@@ -131,7 +131,7 @@ describe('Register user to test user routes', () => {
                             .send(user)
                             .set('token', 'Bearer ' + token)
                             .end((err, response) => {
-                                response.should.have.status(204)
+                                response.should.have.status(200)
                                 response.should.be.a('object')
                                 done()
                             })
