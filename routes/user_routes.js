@@ -45,24 +45,26 @@ router.delete("/:mobileNumber", verifyToken, async (req, res) => {
         if (registeredUser.length != 0) {
             // check if phone number on registered user is same as params
             if (registeredUser[0].mobileNumber == req.params.mobileNumber) {
-
                 // delete user 
-                const removedUser = await usersDB.removeUser(req.params.mobileNumber)
-                if (removedUser) {
+                await usersDB.removeUser(req.params.mobileNumber)
 
-                    // check if wallet with email exists
-                    const wallet = await walletDB.findWalletByEmail(req.body.email)
-                    if (wallet.length != 0 && wallet[0].userEmail == req.body.email) {
+                // check if wallet with email exists
+                const wallet = await walletDB.findByMobileNumber(req.params.mobileNumber)
+                console.log(wallet)
 
-                        await walletDB.removeWallet(req.body.email)
-                        return res.status(204).json({ message: "User and user wallet deleted..." })
+                if (wallet.length != 0) {
+                    // check if phone number on user wallet is same as params
+                    if (wallet[0].userNumber == req.params.mobileNumber) {
+                        // delete wallet
+                        await walletDB.removeWallet(req.params.mobileNumber)
+
+                        return res.status(200).json({ message: "User and user wallet deleted..." })
                     }
                 }
             }
-            return res.status(403).json({ message: "Invalid access" })
 
+            return res.status(401).json({ message: "You cannot do that" })
         }
-
     } catch (err) {
         return res.status(500).json({ message: err.message })
     }
