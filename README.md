@@ -60,14 +60,14 @@ in recent years, there has been a vast increase in the development and use of fi
 ## API Endpoints
 | HTTP Verbs | Endpoints | Action | Required |
 | --- | --- | --- | --- |
-| POST | https://nodejs-e-wallet-api.herokuapp.com//api/v1/auth/register | Register a new user | req.body.firstName <br> req.body.password <br> req.body.email <br> req.body.lastName <br> req.body.mobileNumber |
-| GET | https://nodejs-e-wallet-api.herokuapp.com//api/v1/auth/login | Login user |  req.body.email <br> req.body.password|
+| POST | https://nodejs-e-wallet-api.herokuapp.com/api/v1/auth/register | Register a new user | req.body.firstName <br> req.body.password <br> req.body.email <br> req.body.lastName <br> req.body.mobileNumber |
+| GET | https://nodejs-e-wallet-api.herokuapp.com/api/v1/auth/login | Login user |  req.body.email <br> req.body.password|
 | DELETE | https://nodejs-e-wallet-api.herokuapp.com//api/v1/user/delete/:mobileNumber | Delete a user |  req.params.mobileNumber <br> req.body.email|
-| PUT | https://nodejs-e-wallet-api.herokuapp.com//api/v1/user/update/:mobileNumber | Update a user |  req.params.mobileNumber <br> req.body|
-| POST | https://nodejs-e-wallet-api.herokuapp.com//api/v1/wallet/fundWallet | Fund wallet  | req.body.email <br> req.body.amountToFund |
-| POST | https://nodejs-e-wallet-api.herokuapp.com//api/v1/wallet/transferFund | Transfer funds  | req.body.senderEmail <br> req.body.amountToTransfer <br> req.body.recieverEmail |
-| GET | https://nodejs-e-wallet-api.herokuapp.com//api/v1/wallet/withdrawFund | Withdraw funds  | req.body.email <br> req.body.amountToWithdraw |
-| GET | https://nodejs-e-wallet-api.herokuapp.com//api/v1/wallet/walletBalance | Check wallet balance  | req.body.email |
+| PUT | https://nodejs-e-wallet-api.herokuapp.com/api/v1/user/update/:mobileNumber | Update a user |  req.params.mobileNumber <br> req.body|
+| POST | https://nodejs-e-wallet-api.herokuapp.com/api/v1/wallet/fundWallet | Fund wallet  | req.body.email <br> req.body.amountToFund |
+| POST | https://nodejs-e-wallet-api.herokuapp.com/api/v1/wallet/transferFund | Transfer funds  | req.body.senderEmail <br> req.body.amountToTransfer <br> req.body.recieverEmail |
+| GET | https://nodejs-e-wallet-api.herokuapp.com/api/v1/wallet/withdrawFund | Withdraw funds  | req.body.email <br> req.body.amountToWithdraw |
+| GET | https://nodejs-e-wallet-api.herokuapp.com/api/v1/wallet/walletBalance | Check wallet balance  | req.body.email |
 
 ## Database Design
 ![alt text](assets/e-wallet-api-database-design.png)
